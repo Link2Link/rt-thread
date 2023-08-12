@@ -10,7 +10,7 @@
       <TargetName>rt-thread</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060960::V5.06 update 7 (build 960)::.\ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, STM32H750xx, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, USE_HAL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\components\libc\compilers\common\extension\fcntl\octal;board;..\libraries\HAL_Drivers;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\stdio;.;..\..\..\components\finsh;..\..\..\include;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\libc\posix\io\eventfd;board\CubeMX_Config\Inc;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\drv_flash;..\..\..\components\libc\compilers\common\extension;..\..\..\libcpu\arm\cortex-m7;applications;..\libraries\HAL_Drivers\config;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\ktime;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\poll;board\port;..\..\..\components\dfs\dfs_v1\filesystems\devfs;..\libraries\STM32H7xx_HAL\CMSIS\Device\ST\STM32H7xx\Include;..\..\..\components\drivers\spi;..\..\..\components\ktime\inc;..\..\..\components\libc\compilers\common\include;..\..\..\components\utilities\resource;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\epoll;..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Inc;..\..\..\components\dfs\dfs_v1\include;..\..\..\libcpu\arm\common</IncludePath>
+              <IncludePath>..\..\..\libcpu\arm\common;..\libraries\HAL_Drivers;..\..\..\components\drivers\spi;board\port;.;board;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\include;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\drv_flash;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\libraries\HAL_Drivers\config;..\..\..\components\libc\posix\io\epoll;applications;..\libraries\STM32H7xx_HAL\CMSIS\Device\ST\STM32H7xx\Include;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\libc\posix\io\stdio;..\..\..\components\drivers\include;..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Inc;..\..\..\components\finsh;..\..\..\components\dfs\dfs_v1\include;..\..\..\include;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\ktime\inc;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\resource;..\..\..\libcpu\arm\cortex-m7;..\..\..\components\dfs\dfs_v1\filesystems\devfs;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\eventfd;board\CubeMX_Config\Inc;..\..\..\components\ktime</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -524,7 +524,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -580,7 +580,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -636,7 +636,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -692,7 +692,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -748,7 +748,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -804,7 +804,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -860,7 +860,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -916,7 +916,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -972,7 +972,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1028,7 +1028,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1084,7 +1084,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1140,7 +1140,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1196,7 +1196,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1252,7 +1252,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1308,7 +1308,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1364,7 +1364,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1420,7 +1420,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1476,7 +1476,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1532,7 +1532,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1588,7 +1588,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
@@ -1644,7 +1644,7 @@
                       <MiscControls>  --c99</MiscControls>
                       <Define> </Define>
                       <Undefine> </Undefine>
-                      <IncludePath></IncludePath>
+                      <IncludePath> </IncludePath>
                     </VariousControls>
                   </Cads>
                 </FileArmAds>
