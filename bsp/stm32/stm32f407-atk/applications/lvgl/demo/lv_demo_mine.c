@@ -5,7 +5,9 @@
 #include "rtthread.h"
 
 lv_obj_t* showString;
-
+lv_obj_t* showString2;
+lv_obj_t* showString3;
+lv_obj_t* showString4;
 extern void btn1_cb_app();
 
 
@@ -85,9 +87,21 @@ void lv_demo_mine(void)
     // 左侧工作区域
     lv_obj_t* area = lv_obj_create(lv_scr_act());
     lv_obj_set_size(area, 600, 480);
+
     showString = lv_label_create(area);
     lv_label_set_text_fmt(showString, "LVGL");
 
+    showString2 = lv_label_create(area);
+    lv_label_set_text_fmt(showString2, "LVGL");
+    lv_obj_align_to(showString2, showString, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+
+    showString3 = lv_label_create(area);
+    lv_label_set_text_fmt(showString3, "LVGL");
+    lv_obj_align_to(showString3, showString2, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
+
+    showString4 = lv_label_create(area);
+    lv_label_set_text_fmt(showString4, "LVGL");
+    lv_obj_align_to(showString4, showString3, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
 
 }
 

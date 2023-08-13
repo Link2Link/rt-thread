@@ -16,14 +16,10 @@
 #include "delay.h"
 #include "stm32f4xx_hal.h"
 #include "adc_code.h"
+#include "dcmotor_tim.h"
 
-
-
-static rt_sem_t sem_adc_done = RT_NULL;
-void adc_init(void);                        /* ADC初始化 */
-void adc_nch_dma_init(void);                /* ADC DMA传输 初始化函数 */
-double get_temp(uint16_t para);
-
+extern uint16_t g_adc_value[ADC_SUM];
+uint32_t adc[3] = {0};                                           /* ADC平均值 */
 
 
 #define HWTIMER_DEV_NAME   "timer11"     /* 定时器名称 */
@@ -35,6 +31,7 @@ static rt_err_t timeout_cb_10KHZ(rt_device_t dev, rt_size_t size)
     
     int temp;
     rt_pin_write(TEST_PIN, PIN_HIGH);
+    adc_nch_dma_start();
     rt_pin_write(TEST_PIN, PIN_LOW);
     
     return 0;
@@ -42,14 +39,6 @@ static rt_err_t timeout_cb_10KHZ(rt_device_t dev, rt_size_t size)
 
 static int hwtimer_10KHz_init()
 {
-    sem_adc_done = rt_sem_create("sem_adc_done", 0, RT_IPC_FLAG_PRIO);
-    if (sem_adc_done == RT_NULL)
-    {
-        rt_kprintf("create sem_adc_done semaphore failed.\n");
-        return -1;
-    }
-
-    rt_pin_mode(TEST_PIN, PIN_MODE_OUTPUT);
 
     rt_err_t ret = RT_EOK;
     rt_hwtimerval_t timeout_s;      /* 定时器超时值 */
@@ -89,7 +78,7 @@ static int hwtimer_10KHz_init()
 
     /* 设置定时器超时值为5s并启动定时器 */
     timeout_s.sec = 0;      /* 秒 */
-    timeout_s.usec = 100;     /* 微秒 */
+    timeout_s.usec = 50;     /* 微秒 */
     if (rt_device_write(hw_dev, 0, &timeout_s, sizeof(timeout_s)) != sizeof(timeout_s))
     {
         rt_kprintf("set timeout value failed\n");
@@ -108,14 +97,10 @@ static struct rt_thread thread_adc;
 static void thread_adc_entry(void *parameter)
 {
 
+    atim_timx_cplm_pwm_init(8400 - 1, 0);
     int temp;
 
     static rt_err_t result;
-
-    double lvgl_show_adc = 0;
-    extern lv_obj_t* showString;
-
-    //adc_init();
     while (1)
     {
         result = rt_sem_take(sem_adc_done, RT_WAITING_FOREVER);
@@ -126,7 +111,7 @@ static void thread_adc_entry(void *parameter)
             return;
         }
         // 同步于adc采集完成
-         
+         adc[0] = adc_get_result_average(0);
 
     }
 }
@@ -142,19 +127,39 @@ static void thread_adcshow_entry(void *parameter)
 
     double lvgl_show_adc = 0;
     extern lv_obj_t* showString;
+    extern lv_obj_t* showString2;
+    extern lv_obj_t* showString3;
+    extern lv_obj_t* showString4;
 
-    adc_nch_dma_init();
+    float busVoltage;
+    float motorTemp;
+    float motorCurrent;
+    
+
+
+    float alpha = 0.8;
+    busVoltage = 0;
+    motorTemp = 0;
+    motorCurrent = 0;
+    float currentUINT = 0;
     while (1)
     {
-        uint32_t adc_result;
-        float voltage;
+        busVoltage = busVoltage*alpha +  (1-alpha)*get_busVoltage(adc_get_result_average(0));
+        motorTemp = motorTemp*alpha + (1-alpha)*get_temp(adc_get_result_average(1));
+        motorCurrent = motorCurrent*alpha + (1-alpha)*(get_motorCurrent(adc_get_result_average(2), 1575));
+        currentUINT = currentUINT * 0.99 + 0.01*(float)adc_get_result_average(2);
+
+#define Pf(X) (int)X, (int)((X - (int)X)*100)
+
+
+    lv_label_set_text_fmt(showString, "BusVoltage = %d.%d\n",Pf(busVoltage));
+    lv_label_set_text_fmt(showString2, "MotorTemp = %d.%d\n", Pf(motorTemp));
+    lv_label_set_text_fmt(showString3, "MotorCurrent = %d.%d mA\n", Pf(motorCurrent));
+    lv_label_set_text_fmt(showString4, "CurrentUINT = %d UINT\n", (int)currentUINT);
+    // rt_kprintf("adc_result = %d\n", g_adc_value[0]);
+
         
-//         adc_result = adc_get_result_average(100);
-//         voltage = ((float)adc_result)*ADC2VBUS;
-// #define Pf(X) (int)X, (int)((X - (int)X)*100)
-//         lv_label_set_text_fmt(showString, "adc_result = %d\n V = %d.%d", adc_result, Pf(voltage));
-        
-        msleep(20);
+        msleep(50);
 
 
     }
@@ -164,8 +169,17 @@ static void thread_adcshow_entry(void *parameter)
 
 void adc_task_setup()
 {
+
+    sem_adc_done = rt_sem_create("sem_adc_done", 0, RT_IPC_FLAG_PRIO);
+    if (sem_adc_done == RT_NULL)
+    {
+        rt_kprintf("create sem_adc_done semaphore failed.\n");
+        return;
+    }
+    rt_pin_mode(TEST_PIN, PIN_MODE_OUTPUT);
+
     hwtimer_10KHz_init();
-    //adc_nch_dma_init();
+    adc_nch_dma_init();
     rt_thread_init(&thread_adc,
                    "thread_adc",
                    thread_adc_entry,
