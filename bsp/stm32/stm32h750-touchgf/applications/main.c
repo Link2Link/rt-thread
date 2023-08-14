@@ -11,15 +11,26 @@
 #include <rtthread.h>
 #include <rtdevice.h>
 #include <board.h>
+#include "ltdc.h"
 
 /* defined the LED0 pin: PE3 */
 #define LED0_PIN    GET_PIN(D, 4)
 
 int main(void)
 {
+    ltdc_init();
     int count = 1;
     /* set LED0 pin mode to output */
     rt_pin_mode(LED0_PIN, PIN_MODE_OUTPUT);
+    
+    for (int k =100; k< 200; ++k)
+    {
+        ltdc_draw_point(k, k, RED);
+    }
+    for (int k =200; k< 250; ++k)
+    {
+        ltdc_draw_point(k, k, GREEN);
+    }
 
     while (count++)
     {

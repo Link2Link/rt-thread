@@ -340,7 +340,7 @@
               <MiscControls></MiscControls>
               <Define>__STDC_LIMIT_MACROS, RT_USING_ARMLIBC, STM32H750xx, RT_USING_LIBC, __CLK_TCK=RT_TICK_PER_SECOND, __RTTHREAD__, USE_HAL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\..\libcpu\arm\common;..\libraries\HAL_Drivers;..\..\..\components\drivers\spi;board\port;.;board;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\include;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\drv_flash;..\..\..\components\drivers\include;..\..\..\components\libc\compilers\common\extension\fcntl\octal;..\libraries\HAL_Drivers\config;..\..\..\components\libc\posix\io\epoll;applications;..\libraries\STM32H7xx_HAL\CMSIS\Device\ST\STM32H7xx\Include;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\libc\posix\io\stdio;..\..\..\components\drivers\include;..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Inc;..\..\..\components\finsh;..\..\..\components\dfs\dfs_v1\include;..\..\..\include;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\..\..\components\ktime\inc;..\..\..\components\libc\posix\io\poll;..\..\..\components\libc\posix\ipc;..\..\..\components\utilities\resource;..\..\..\libcpu\arm\cortex-m7;..\..\..\components\dfs\dfs_v1\filesystems\devfs;..\..\..\components\libc\compilers\common\extension;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\eventfd;board\CubeMX_Config\Inc;..\..\..\components\ktime</IncludePath>
+              <IncludePath>..\..\..\components\libc\compilers\common\extension\fcntl\octal;board;..\libraries\HAL_Drivers;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\stdio;.;..\..\..\components\finsh;..\..\..\include;..\..\..\components\drivers\spi\sfud\inc;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\CMSIS\Include;..\..\..\components\libc\posix\io\eventfd;board\CubeMX_Config\Inc;..\..\..\components\drivers\include;..\libraries\HAL_Drivers\drv_flash;..\..\..\components\libc\compilers\common\extension;..\..\..\libcpu\arm\cortex-m7;applications;..\libraries\HAL_Drivers\config;..\..\..\components\libc\posix\ipc;..\..\..\components\drivers\include;..\..\..\components\drivers\include;..\..\..\components\ktime;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\poll;board\port;..\..\..\components\dfs\dfs_v1\filesystems\devfs;..\libraries\STM32H7xx_HAL\CMSIS\Device\ST\STM32H7xx\Include;..\..\..\components\drivers\spi;..\..\..\components\ktime\inc;..\..\..\components\libc\compilers\common\include;..\..\..\components\utilities\resource;..\..\..\components\drivers\include;..\..\..\components\libc\posix\io\epoll;..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Inc;..\..\..\components\dfs\dfs_v1\include;..\..\..\libcpu\arm\common</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -384,6 +384,11 @@
         <Group>
           <GroupName>Applications</GroupName>
           <Files>
+            <File>
+              <FileName>ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>applications\ltdc.c</FilePath>
+            </File>
             <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
@@ -1836,14 +1841,14 @@
           <GroupName>ktime</GroupName>
           <Files>
             <File>
-              <FileName>boottime.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\..\components\ktime\src\boottime.c</FilePath>
-            </File>
-            <File>
               <FileName>cputimer.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\..\components\ktime\src\cputimer.c</FilePath>
+            </File>
+            <File>
+              <FileName>boottime.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\..\components\ktime\src\boottime.c</FilePath>
             </File>
             <File>
               <FileName>hrtimer.c</FileName>
@@ -1874,6 +1879,11 @@
               <FileName>stm32h7xx_hal_pwr.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_dma2d.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_dma2d.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7xx_hal_tim_ex.c</FileName>
@@ -1924,6 +1934,11 @@
               <FileName>stm32h7xx_hal_i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32h7xx_hal_ltdc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\libraries\STM32H7xx_HAL\STM32H7xx_HAL_Driver\Src\stm32h7xx_hal_ltdc.c</FilePath>
             </File>
             <File>
               <FileName>stm32h7xx_hal_cryp.c</FileName>

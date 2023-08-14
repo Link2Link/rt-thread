@@ -8,6 +8,15 @@ config SOC_STM32H750VBT6
     default y
 
 menu "Onboard Peripheral Drivers"
+	config BSP_USING_TOUGHFX_SCREEN
+		bool "Enable LTDC Screen" 
+		default y
+		if BSP_USING_TOUGHFX_SCREEN
+			config BSP_USING_LTDC
+			bool "Enable LTDC"
+			default y
+        endif
+		
 
     config BSP_USING_SPI_FLASH
         bool "Enable SPI FLASH (W25Q64 spi1)"

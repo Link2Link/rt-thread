@@ -258,6 +258,8 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USING_TOUGHFX_SCREEN
+#define BSP_USING_LTDC
 
 /* On-chip Peripheral Drivers */
 
