@@ -1,9 +1,7 @@
 
-#include <rtthread.h>
-#include <rtdevice.h>
-#include <board.h>
+
 #include "ltdc.h"
-#include "stm32h7xx_hal.h"
+
 
 LTDC_HandleTypeDef hltdc;
 _ltdc_dev lcdltdc;

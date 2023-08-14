@@ -1,6 +1,10 @@
 #ifndef _LTDC_MINE_H_
 #define _LTDC_MINE_H_
 
+#include <rtthread.h>
+#include <rtdevice.h>
+#include <board.h>
+#include "stm32h7xx_hal.h"
 
 //画笔颜色
 #define WHITE         	 0xFFFF
@@ -59,3 +63,4 @@ uint32_t ltdc_read_point(uint16_t x, uint16_t y);
 void ltdc_clear(uint32_t color);
 
 #endif
+
