@@ -11,8 +11,9 @@
 #include <stdbool.h>
 #include <rtdevice.h>
 #include <board.h>
-//#include "touch.h"
+#include "gt911.h"
 
+TS_StateTypeDef gt911_state;
 
 static void touchpad_init(void);
 static void touchpad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
@@ -22,33 +23,21 @@ static void touchpad_get_xy(lv_coord_t * x, lv_coord_t * y);
 
 static void touchpad_init(void)
 {
-//    /*Your code comes here*/
-//    tp_dev.init();
-//    /* 电阻屏如果发现显示屏XY镜像现象，需要坐标矫正 */
-//    if (0 == (tp_dev.touchtype & 0x80)) {
-//        tp_adjust();
-//        tp_save_adjust_data();
-//     }
+    gt911_init();
 }
 
 static bool touchpad_is_pressed(void)
 {
-    // /*Your code comes here*/
-    // tp_dev.scan(0);
-
-    // if (tp_dev.sta & TP_PRES_DOWN)
-    // {
-    //     return true;
-    // }
-
-    // return false;
+    /*Your code comes here*/
+    gt911_get_state(&gt911_state);
+    return (bool)gt911_state.TouchDetected;
 }
 
 static void touchpad_get_xy(lv_coord_t * x, lv_coord_t * y)
 {
     // /*Your code comes here*/
-    // (*x) = LCD_W - tp_dev.x[0] - 1;
-    // (*y) = LCD_H - tp_dev.y[0] - 1;
+    (*x) = gt911_state.X;
+    (*y) = gt911_state.Y;
 }
 
 lv_indev_t *touch_indev;
@@ -81,14 +70,8 @@ static void touchpad_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 void lv_port_indev_input(rt_int16_t x, rt_int16_t y, lv_indev_state_t state)
 {
     last_state = state;
-#ifdef BSP_USING_TOUCH_CAP
-    last_x = LCD_W - y;
-    last_y = x;
-#endif /* BSP_USING_TOUCH_CAP */
-#ifdef BSP_USING_TOUCH_RES
     last_x = x;
     last_y = y;
-#endif /* BSP_USING_TOUCH_RES */
 }
 
 void lv_port_indev_init(void)

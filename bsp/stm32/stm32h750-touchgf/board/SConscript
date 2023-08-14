@@ -29,6 +29,9 @@ if GetDepend('BSP_USING_LCD_SPI'):
     src = src + ['port/st7735/st7735_reg.c']
     src = src + ['port/st7735/logo.c']
     path += [cwd + '/port/st7735']
+if GetDepend('BSP_USING_TOUGHFX_SCREEN'):
+    src = src + ['port/ltdc.c']
+    src = src + ['port/gt911.c']
 
 for item in list:
     if os.path.isfile(os.path.join(cwd, item, 'SConscript')):

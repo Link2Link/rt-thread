@@ -108,26 +108,19 @@ void ltdc_layer1_config(void)
 
 void ltdc_draw_point(uint16_t x, uint16_t y, uint32_t color)
 {
-  if (lcdltdc.dir)
-  {
     *(uint16_t *)((uint32_t)framebuf + lcdltdc.pixsize * (lcdltdc.pwidth * y + x)) = color;
-  }
-  else
-  {
-    *(uint16_t *)((uint32_t)framebuf + lcdltdc.pixsize * (lcdltdc.pwidth * y + x)) = color;
-  }
 }
+
+void ltdc_draw_point2(uint16_t x, uint16_t y, uint16_t * color)
+{
+    *(uint16_t *)((uint32_t)framebuf + lcdltdc.pixsize * (lcdltdc.pwidth * y + x)) = *color;
+}
+
+
 
 uint32_t ltdc_read_point(uint16_t x, uint16_t y)
 {
-  if (lcdltdc.dir)
-  {
       return *(uint16_t *)((uint32_t)framebuf[x] + lcdltdc.pixsize * (lcdltdc.pwidth * y + x));
-  }
-  else
-  {
-      return *(uint16_t *)((uint32_t)framebuf[x] + lcdltdc.pixsize * (lcdltdc.pwidth * y + x));
-  }
 }
 
 void ltdc_clear(uint32_t color)

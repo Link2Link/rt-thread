@@ -12,7 +12,7 @@
 
 #include "lv_conf.h"
 
-#define RUN_LVGL_APP lv_demo_mine
+#define RUN_LVGL_APP lv_demo_calendar
 
 void ui_init(void)
 {

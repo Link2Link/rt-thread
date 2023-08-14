@@ -53,19 +53,22 @@ void lv_port_disp_init(void)
 
     /* 单缓冲区示例) */
     static lv_disp_draw_buf_t draw_buf_dsc_1;
-#if USE_SRAM
-    static lv_color_t buf_1 = mymalloc(SRAMEX, MY_DISP_HOR_RES * MY_DISP_VER_RES);              /* 设置缓冲区的大小为屏幕的全尺寸大小 */
-    lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * MY_DISP_VER_RES);     /* 初始化显示缓冲区 */
-#else
-    static lv_color_t buf_1[MY_DISP_HOR_RES * MY_DISP_VER_RES/10];                                              /* 设置缓冲区的大小为 10 行屏幕的大小 */
-    lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * MY_DISP_VER_RES/20);                  /* 初始化显示缓冲区 */
-#endif
+// #if USE_SRAM
+//     static lv_color_t * buf_1;
+//     buf_1 = rt_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES*2);              /* 设置缓冲区的大小为屏幕的全尺寸大小 */
+//     lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * MY_DISP_VER_RES*2);     /* 初始化显示缓冲区 */
+// #else
+//     // static lv_color_t buf_1[MY_DISP_HOR_RES * MY_DISP_VER_RES/10];                                              /* 设置缓冲区的大小为 10 行屏幕的大小 */
+//     lv_color_t * buf_1 = rt_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES);
+    
+//     lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_1, NULL, MY_DISP_HOR_RES * MY_DISP_VER_RES/2);                  /* 初始化显示缓冲区 */
+// #endif
 
     /* 双缓冲区示例) */
-//    static lv_disp_draw_buf_t draw_buf_dsc_2;
-//    static lv_color_t buf_2_1[MY_DISP_HOR_RES * 10];                                            /* 设置缓冲区的大小为 10 行屏幕的大小 */
-//    static lv_color_t buf_2_2[MY_DISP_HOR_RES * 10];                                            /* 设置另一个缓冲区的大小为 10 行屏幕的大小 */
-//    lv_disp_draw_buf_init(&draw_buf_dsc_2, buf_2_1, buf_2_2, MY_DISP_HOR_RES * 10);             /* 初始化显示缓冲区 */
+   static lv_disp_draw_buf_t draw_buf_dsc_2;
+   lv_color_t * buf_2_1 = rt_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES);                                            /* 设置缓冲区的大小为 10 行屏幕的大小 */
+   lv_color_t * buf_2_2 = rt_malloc(MY_DISP_HOR_RES * MY_DISP_VER_RES);                                            /* 设置另一个缓冲区的大小为 10 行屏幕的大小 */
+   lv_disp_draw_buf_init(&draw_buf_dsc_1, buf_2_1, buf_2_2, MY_DISP_HOR_RES * MY_DISP_VER_RES/2);             /* 初始化显示缓冲区 */
 
     /* 全尺寸双缓冲区示例) 并且在下面设置 disp_drv.full_refresh = 1 */
 //    static lv_disp_draw_buf_t draw_buf_dsc_3;
@@ -116,14 +119,13 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 
    int32_t x;
    int32_t y;
-   uint16_t *color;
 
    for(y = area->y1; y <= area->y2; y++) {
        for(x = area->x1; x <= area->x2; x++) {
            /*Put a pixel to the display. For example:*/
            /*put_px(x, y, *color_p)*/
-            color = (uint16_t*)color_p;
-            ltdc_draw_point(x, y, *color);
+
+            ltdc_draw_point2(x, y, (uint16_t*)color_p);
             color_p++;
        }
    }

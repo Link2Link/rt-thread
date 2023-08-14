@@ -6,6 +6,8 @@
 #include <board.h>
 #include "stm32h7xx_hal.h"
 
+
+
 //画笔颜色
 #define WHITE         	 0xFFFF
 #define BLACK         	 0x0000	  
@@ -59,6 +61,7 @@ typedef struct
 
 void ltdc_init(void);
 void ltdc_draw_point(uint16_t x, uint16_t y, uint32_t color);
+void ltdc_draw_point2(uint16_t x, uint16_t y, uint16_t * color);
 uint32_t ltdc_read_point(uint16_t x, uint16_t y);
 void ltdc_clear(uint32_t color);
 
