@@ -156,6 +156,9 @@
 /* Wiced WiFi */
 
 
+/* CYW43012 WiFi */
+
+
 /* IoT Cloud */
 
 
@@ -180,7 +183,7 @@
 #define PKG_LVGL_DISP_REFR_PERIOD 5
 #define PKG_USING_LVGL_SQUARELINE
 #define PKG_LVGL_USING_V08038
-#define PKG_LVGL_VER_NUM 0x08038
+#define PKG_LVGL_VER_NUM 0x080308
 
 /* u8g2: a monochrome graphic library */
 
